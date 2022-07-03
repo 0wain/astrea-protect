@@ -23,7 +23,7 @@ function net.Incoming(len, client)
 		if not table.HasValue(AstreaToolbox.Core.GetSetting("net_whitelist"), netMsg) then
 			if client then
                 local id64 = client:SteamID64()
-                local name = client:SteamID64()
+                local name = client:Nick()
 
 				if (not lastWipe[id64]) or (not messageCount[id64]) then
 					lastWipe[id64] = 0
