@@ -44,6 +44,9 @@ function net.Incoming(len, client)
 				if (C) and (!(AstreaToolbox.Core.GetSetting("net_limit") == 0)) and (C > AstreaToolbox.Core.GetSetting("net_limit")) then
 					logPrint(string.format("Kicking %s (%s) for suspected net message spamming", name, id64))
 					client:Kick("Suspected Exploiting")
+
+					AstreaToolbox.Core.AddTableRow("net_log", {string.format("%s (%s)", name, id64), strName, os.time()})
+
 					client.netMessageKicked = true
 					return
 				end
@@ -54,7 +57,7 @@ function net.Incoming(len, client)
 			end
 		end
 	end
-
+	
 	len = len - 16
 	func( len, client )
 end
